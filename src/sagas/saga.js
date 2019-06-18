@@ -20,9 +20,15 @@ function* fetchAPI (action) {
   while (true) {
     try {
 
-      const orders = yield fetchAsync(Api.getOrders, action.payload);
-      const trades = yield fetchAsync(Api.getTrades, action.payload);
-      const tickers = yield fetchAsync(Api.getTicker)
+      // const orders = yield fetchAsync(Api.getOrders, action.payload);
+      // const trades = yield fetchAsync(Api.getTrades, action.payload);
+      // const tickers = yield fetchAsync(Api.getTicker)
+
+      const { orders, trades, tickers } = yield all({
+        orders: fetchAsync(Api.getOrders, action.payload),
+        trades: fetchAsync(Api.getTrades, action.payload),
+        tickers: fetchAsync(Api.getTicker)
+      })
 
       yield put({ type: LOAD_ORDERS_SUCCESS, data: orders });
       yield put({ type: LOAD_TRADES_SUCCESS, data: trades });
