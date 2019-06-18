@@ -20,9 +20,9 @@ function mapStateToProps (state) {
 
 const Head = ({ ticker }) => {
   let strTitle = 'BitcoinTrade Clone';
-  if (ticker && ticker.length > 0)
-    if (ticker[0].data)
-      strTitle = `(${pairName(ticker[0].pair)}) ${formatter.format(ticker[0].data.last)}`;
+  if (ticker && ticker.data.length > 0)
+    if (ticker.data[0])
+      strTitle = `(${pairName(ticker.data[0].pair)}) ${formatter.format(ticker.data[0].last_transaction_unit_price)}`;
 
   return (
     <Helmet>
