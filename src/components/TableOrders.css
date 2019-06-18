@@ -1,0 +1,18 @@
+.item-enter {
+  /* opacity: 0; */
+  background-color: lightcoral;
+}
+.item-enter-active {
+  /* opacity: 1; */
+  background-color: white;
+  transition: background-color 2s ease-in;
+}
+.item-exit {
+  /* opacity: 1; */
+  background-color: lightcoral
+}
+.item-exit-active {
+  /* opacity: 0; */
+  background-color: white;
+  transition: background-color 2s ease-in;
+}
