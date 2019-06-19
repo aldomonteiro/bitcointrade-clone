@@ -18,7 +18,7 @@ const StyledTableCell = withStyles(theme => ({
     color: theme.palette.common.black,
   },
   body: {
-    fontSize: 14,
+    fontSize: 13,
   },
 }))(TableCell);
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     overflowX: 'auto',
   },
   table: {
-    minWidth: 300,
+    minWidth: 200,
   },
 }));
 

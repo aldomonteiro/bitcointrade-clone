@@ -11,27 +11,14 @@ import {
   TransitionGroup,
 } from 'react-transition-group';
 import './TableOrders.css';
-import { green } from '@material-ui/core/colors';
-
-const StyledTableCellBig = withStyles(theme => ({
-  head: {
-    backgroundColor: "#DDDDDD",
-    color: theme.palette.common.black,
-    width: '30%',
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
 
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: "#DDDDDD",
     color: theme.palette.common.black,
-    width: '23%',
   },
   body: {
-    fontSize: 14,
+    fontSize: 13,
   },
 }))(TableCell);
 
@@ -75,7 +62,7 @@ export default function TableTrades ({ rows }) {
       <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
-            <StyledTableCellBig align="left">Executada em</StyledTableCellBig>
+            <StyledTableCell align="left">Executada em</StyledTableCell>
             <StyledTableCell align="left">Tipo</StyledTableCell>
             <StyledTableCell align="left">Quantidade</StyledTableCell>
             <StyledTableCell align="left">Preço Unitário</StyledTableCell>
@@ -84,15 +71,15 @@ export default function TableTrades ({ rows }) {
         <TransitionGroup component={TableBody}>
           {rows && rows.map((row) => (
             <CSSTransition
-              key={row.active_order_code}
+              key={row.key}
               timeout={2000}
               classNames="item"
             >
-              <StyledTableRow hover={true} key={row.active_order_code}>
+              <StyledTableRow hover={true} key={row.key}>
                 <StyledTableCell align="left">{new Date(row.date).toLocaleString('pt-BR')}</StyledTableCell>
                 <StyledTableCell align="left">{row.type === 'buy' ? <span style={{ color: 'green' }}>Compra</span> : <span style={{ color: 'red' }}>Venda</span>}</StyledTableCell>
                 <StyledTableCell align="left">{regularFormatter.format(row.amount)}</StyledTableCell>
-                <StyledTableCell align="right">{formatter.format(row.unit_price)}</StyledTableCell>
+                <StyledTableCell align="left">{formatter.format(row.unit_price)}</StyledTableCell>
               </StyledTableRow>
             </CSSTransition>
           ))}

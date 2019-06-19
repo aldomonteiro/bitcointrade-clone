@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 import TableOrders from './TableOrders';
 
-import { loadOrders } from "../sagas/actions";
+import { loadOrders, loadTicker } from "../sagas/actions";
 import TableTrades from './TableTrades';
 import { CircularProgress } from '@material-ui/core';
 
@@ -33,57 +33,58 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function GridOrders ({ loadOrders, data, loading, trades }) {
+function GridOrders ({ loadOrders, data, loading_orders, loadTicker, trades }) {
   const classes = useStyles();
-  const [selectedBids, setSelectedBids] = useState(0);
-  const [selectedAsks, setSelectedAsks] = useState(0);
+  // const [selectedBids, setSelectedBids] = useState(0);
+  // const [selectedAsks, setSelectedAsks] = useState(0);
 
   useEffect(() => {
     loadOrders('BRLBTC');
+    loadTicker();
   }, []);
 
-  function handleSelectedBids (selected) {
-    setSelectedBids(selected);
-  }
+  // function handleSelectedBids (selected) {
+  //   setSelectedBids(selected);
+  // }
 
-  function handleSelectedAsks (selected) {
-    setSelectedAsks(selected)
-  }
+  // function handleSelectedAsks (selected) {
+  //   setSelectedAsks(selected)
+  // }
 
   return (
     <div className={classes.root}>
-      {loading ?
+      {loading_orders ?
         <div style={{ width: '100%' }}>
           <Box display="flex" p={1} justifyContent="center" bgcolor="background.paper">
             <CircularProgress />
           </Box>
         </div> : (
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={3}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={3}>
               <Paper className={classes.paper}>
                 <div className={classes.title}>
                   <Typography variant="h4" className={classes.green} noWrap>
-                Ordens de Compra
+                    Ordens de Compra
                   </Typography>
                 </div>
-                <TableOrders rows={selectedBids === 0 ? data.bids ? data.bids : [] : []} />
+                <TableOrders rows={data.bids ? data.bids : []} />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Paper className={classes.paper}>
                 <div className={classes.title}>
                   <Typography variant="h4" className={classes.red} noWrap>
-                Ordens de Venda
+                    Ordens de Venda
                   </Typography>
                 </div>
                 <TableOrders rows={data.asks || []} />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12} md={6}>
               <Paper className={classes.paper}>
                 <div className={classes.title}>
-                  <Typography variant="h4" className={classes.red} noWrap>
-                Ordens executadas
+                  <Typography variant="h4" noWrap>
+                    Ordens executadas
                   </Typography>
                 </div>
                 <TableTrades rows={trades || []} />
@@ -98,13 +99,14 @@ function GridOrders ({ loadOrders, data, loading, trades }) {
 const mapStateToProps = state => ({
   data: state.reduxSaga.data,
   trades: state.reduxSaga.trades,
-  loading: state.reduxSaga.loading,
+  loading_orders: state.reduxSaga.loading_orders,
   error: state.reduxSaga.error,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadOrders: bindActionCreators(loadOrders, dispatch)
+    loadOrders: bindActionCreators(loadOrders, dispatch),
+    loadTicker: bindActionCreators(loadTicker, dispatch)
   }
 }
 

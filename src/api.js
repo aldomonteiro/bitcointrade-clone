@@ -30,8 +30,9 @@ export default class Api {
 
   static getTrades (pair) {
     const now = new Date();
+    now.setHours(23, 59, 59, 59);
     const past = new Date();
-    past.setHours(now.getHours() - 3);
+    past.setTime(now.getTime() - (24 * 60 * 60 * 1000))
 
     const strNow = now.toISOString();
     const strPast = past.toISOString();
