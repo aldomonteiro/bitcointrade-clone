@@ -1,6 +1,8 @@
-This project is a clone of the BitcoinTrade Market Screen. 
+This project is a clone of the BitcoinTrade Market web app. 
 
 ## [Demo](https://bitcointrade.aldomonteiro.com).
+
+[Here is the original web app](https://broker.bitcointrade.com.br/).
 
 ## Features
 
