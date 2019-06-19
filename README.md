@@ -13,28 +13,28 @@ This project is a clone of the BitcoinTrade Market Screen.
 
 Clone the repository:
 
-### `git clone https://github.com/aldomonteiro/bitcointrade-clone`
+`git clone https://github.com/aldomonteiro/bitcointrade-clone`
 
 Get an api key from [BitcoinTrade](https://broker.bitcointrade.com.br/api/token)
 
 Create a `.env` file with the created key:
 
-### `REACT_APP_API_KEY=<your api key>`
+`REACT_APP_API_KEY=<your api key>`
 
 Install all the dependencies
 
-### `npm install`
+`npm install`
 
 Start the development server:
 
-### `npm run start`
+`npm run start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm run build`
+`npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.

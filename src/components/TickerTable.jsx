@@ -37,7 +37,7 @@ const TickerTable = ({ ticker, handleClose }) => {
   return (
     <Table>
       <TableBody>
-        {ticker.data.map((t, index) =>
+        {ticker && ticker.data.map((t, index) =>
           <StyledTableRow key={index} onClick={(evt) => handleClose(evt, index)}>
             <StyledTableCell align="left">
               {pairName(t.pair)}
